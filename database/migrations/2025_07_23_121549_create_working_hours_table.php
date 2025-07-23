@@ -12,11 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('working_hours', function (Blueprint $table) {
-            $table->id();
             $table->tinyInteger('day_of_week'); // 0 (Sunday) to 6 (Saturday)
-            $table->time('start_time');
-            $table->time('end_time');
-            $table->timestamps();
+            $table->time('start_time')->nullable();
+            $table->time('end_time')->nullable();
         });
     }
 

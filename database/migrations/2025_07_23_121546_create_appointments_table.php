@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('appointments', function (Blueprint $table) {
             $table->id();
-            $table->date('date');
-            $table->time('time');
+            $table->dateTime('start_at')->index();
+            $table->dateTime('end_at')->index();
             $table->string('email');
             $table->timestamps();
 
-            // Prevent double bookings on same date+time
-            $table->unique(['date', 'time']);
+            // Prevent double appointments on database level
+            $table->unique(['start_at', 'end_at']);
         });
     }
 
