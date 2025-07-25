@@ -14,7 +14,7 @@
 import {ref} from 'vue'
 import DatePicker from '@components/appointment/AppointmentDatePicker.vue'
 import SlotPicker from '@components/appointment/AppointmentSlotPicker.vue'
-import CenteredView from "@components/base/layout/sections/CenteredView.vue";
+import CenteredView from "@components/base/layout/views/CenteredView.vue";
 
 const selectedDate = ref('')
 

@@ -26,7 +26,10 @@ const submitHandler = async (values) => {
         start_at: dayjs(props.startAt).utc().toISOString(),
         end_at: dayjs(props.endAt).utc().toISOString()
     })
-    return { message: 'Appointment has been created!' }
+    return { 
+        message: 'Appointment has been created!',
+        pageMessage: 'Appointment successfully booked!'
+    }
 };
 
 </script>
