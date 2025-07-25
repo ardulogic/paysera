@@ -52,6 +52,21 @@ class StoreAppointmentRequest extends FormRequest
             $startDate = $this->input('start_at');
             $endDate = $this->input('end_at');
 
+            // Validate appointment length
+            try {
+                $start = \Carbon\Carbon::parse($startDate);
+                $end = \Carbon\Carbon::parse($endDate);
+                $length = $start->diffInMinutes($end);
+                $allowed = config('appointment.allowed_slot_lengths');
+                if (!in_array($length, $allowed)) {
+                    $validator->errors()->add('end_at', 'Appointment length must be one of: ' . implode(", ", $allowed) . ' minutes.');
+                    return;
+                }
+            } catch (\Exception $e) {
+                $validator->errors()->add('end_at', 'Invalid appointment time.');
+                return;
+            }
+
             if (!$this->isWithinWorkingHours($startDate)) {
                 $validator->errors()->add('start_at', 'We are closed at that time!');
                 return;

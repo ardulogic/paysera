@@ -41,7 +41,7 @@ class StoreAppointmentTest extends TestCase
 
         $response = $this->postJson($this->getApiUrl(), [
             'start_at' => $monday->format($this->requestDateFormat),
-            'end_at' => $monday->copy()->addMinutes(30)->format($this->requestDateFormat),
+            'end_at' => $monday->copy()->addMinutes(60)->format($this->requestDateFormat), // 60 min slot
             'email' => 'john@example.com',
         ]);
 
