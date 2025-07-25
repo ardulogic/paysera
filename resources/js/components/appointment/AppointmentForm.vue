@@ -4,7 +4,6 @@ import FormWrapper from '@js/components/base/form/FormWrapper.vue'
 import {appointmentSchema} from '@js/validation/appointment.js'
 import axios from "axios";
 import {computed} from 'vue'
-import dayjs from 'dayjs'
 
 const props = defineProps({
     startAt: {type: Date, required: true},
@@ -12,19 +11,20 @@ const props = defineProps({
 })
 
 const initialValues = computed(() => {
+    // Display in user's local timezone
     return {
-        start_at: dayjs(props.startAt).format('YYYY-MM-DD HH:mm'),
-        end_at: dayjs(props.endAt).format('YYYY-MM-DD HH:mm'),
+        start_at: dayjs.utc(props.startAt).tz(dayjs.tz.guess()).format('YYYY-MM-DD HH:mm'),
+        end_at: dayjs.utc(props.endAt).tz(dayjs.tz.guess()).format('YYYY-MM-DD HH:mm'),
     }
 });
 
 const submitHandler = async (values) => {
+    // Always send UTC ISO strings to backend
     const response = await axios.post('/api/appointment/store', {
         email: values.email,
-        start_at: props.startAt.toISOString(),
-        end_at: props.endAt.toISOString()
+        start_at: dayjs(props.startAt).utc().toISOString(),
+        end_at: dayjs(props.endAt).utc().toISOString()
     })
-
     return { message: 'Appointment has been created!' }
 };
 

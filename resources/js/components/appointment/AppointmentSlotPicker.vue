@@ -36,18 +36,17 @@ const fetchSlots = async () => {
 
     try {
         const res = await axios.get('/api/appointment/slots', {
-            params: {date: props.date.toISOString().split('T')[0],},
+            params: {date: dayjs.utc(props.date).format('YYYY-MM-DD')},
         })
 
-        // Convert ISO strings to Date objects
+        // Convert ISO strings to Date objects (assume UTC)
         slots.value = (res.data.slots || []).map(slot => ({
             ...slot,
-            start_at: new Date(slot.start_at),
-            end_at: new Date(slot.end_at),
+            start_at: dayjs.utc(slot.start_at).toDate(),
+            end_at: dayjs.utc(slot.end_at).toDate(),
         }))
     } catch (err) {
         slots.value = [];
-
         console.error('Failed to fetch slots:', err)
     }
 }

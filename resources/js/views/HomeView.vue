@@ -1,3 +1,4 @@
+<!-- All appointment times are displayed in the user's local timezone -->
 <template>
     <SectionBox>
         <div class="date-picker-wrapper">

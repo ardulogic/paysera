@@ -28,11 +28,8 @@ const select = () => {
 }
 
 const formatTime = (dateObj) => {
-    return dateObj.toLocaleTimeString([], {
-        hour: '2-digit',
-        minute: '2-digit',
-        hour12: false  // <-- This forces 24-hour format
-    })
+    // Display in user's local timezone
+    return dayjs.utc(dateObj).tz(dayjs.tz.guess()).format('HH:mm')
 }
 
 const showFormDialog = () => {

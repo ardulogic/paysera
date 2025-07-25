@@ -1,4 +1,5 @@
 <?php
+// All times are handled in UTC for consistency with frontend and backend
 
 namespace Tests\Feature;
 
