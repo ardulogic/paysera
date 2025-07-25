@@ -4,6 +4,7 @@ import FormWrapper from '@js/components/base/form/FormWrapper.vue'
 import {appointmentSchema} from '@js/validation/appointment.js'
 import axios from "axios";
 import {computed} from 'vue'
+import dayjs from 'dayjs'
 
 const props = defineProps({
     startAt: {type: Date, required: true},

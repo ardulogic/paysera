@@ -17,6 +17,7 @@
 import {ref, watch} from 'vue'
 import axios from 'axios'
 import AppointmentSlot from "@components/appointment/AppointmentSlot.vue";
+import dayjs from 'dayjs'
 
 const props = defineProps({
     date: {

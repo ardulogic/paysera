@@ -10,6 +10,7 @@
 import {computed} from 'vue'
 import AppointmentForm from '@components/appointment/AppointmentForm.vue'
 import {useDialog} from 'naive-ui'
+import dayjs from 'dayjs'
 
 const dialog = useDialog()
 import {h} from 'vue'

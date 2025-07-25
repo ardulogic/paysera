@@ -1,26 +1,24 @@
 <!-- All appointment times are displayed in the user's local timezone -->
 <template>
-    <SectionBox>
+    <CenteredView>
         <div class="date-picker-wrapper">
             <h1>Book an Appointment:</h1>
             <DatePicker @dateSelected="onDateSelected"/>
         </div>
 
         <SlotPicker v-if="selectedDate" :date="selectedDate"></SlotPicker>
-    </SectionBox>
+    </CenteredView>
 </template>
 
 <script setup>
 import {ref} from 'vue'
 import DatePicker from '@components/appointment/AppointmentDatePicker.vue'
 import SlotPicker from '@components/appointment/AppointmentSlotPicker.vue'
-import SectionBox from "@components/base/layout/sections/SectionBox.vue";
+import CenteredView from "@components/base/layout/sections/CenteredView.vue";
 
 const selectedDate = ref('')
-
 
 const onDateSelected = function (value) {
     selectedDate.value = value;
 }
-
 </script>

@@ -24,10 +24,10 @@ import logo from '@assets/logo.webp'
 @use '@styleVars/base' as *;
 
 $header-mobile-breakpoint: 430px;
-$header-height: 40px;
+$header-height: 80px;
 
 .header {
-  padding: 16px;
+  padding: 0 16px;
   border-bottom: 1px solid $border-color;
   background-color: $bg-white;
   box-shadow: $shadow-sm;
@@ -46,7 +46,7 @@ $header-height: 40px;
     justify-content: center;
 
     img {
-      max-height: $header-height;
+      max-height: calc($header-height / 2)
     }
   }
 
